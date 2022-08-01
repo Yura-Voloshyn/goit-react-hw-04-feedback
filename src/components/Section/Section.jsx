@@ -1,17 +1,14 @@
+import PropTypes from 'prop-types';
 import { Section } from './Section.styled';
-import Feedback from '../FeedbackOptions/FeedbackOptions';
-import Statistic from '../Statistics/Statistics';
-const FeedbackWrapper = ({
-  goodValue,
-  neutralValue,
-  badValue,
-  onGoodBtn,
-  onNeutralBtn,
-  onBadBtn,
-}) => {
+// import Feedback from '../FeedbackOptions/FeedbackOptions';
+// import Statistic from '../Statistics/Statistics';
+const FeedbackSection = ({ title, children }) => {
   return (
     <Section>
-      <Feedback
+      <h2>{title}</h2>
+      {children}
+
+      {/* <Feedback
         onGoodBtn={onGoodBtn}
         onNeutralBtn={onNeutralBtn}
         onBadBtn={onBadBtn}
@@ -20,8 +17,11 @@ const FeedbackWrapper = ({
         goodValue={goodValue}
         neutralValue={neutralValue}
         badValue={badValue}
-      />
+      /> */}
     </Section>
   );
 };
-export default FeedbackWrapper;
+FeedbackSection.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+export default FeedbackSection;

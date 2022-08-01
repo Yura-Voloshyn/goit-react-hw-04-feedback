@@ -5,14 +5,14 @@ export const StatisticWrapper = styled.div`
   margin: 0 auto;
 `;
 
-export const StatisticTitle = styled.h2`
-  text-align: center;
-  transition: all 0.2s;
-  &:hover {
-    /* transition: all 0.5s; */
-    transform: scale(1.05);
-  }
-`;
+// export const StatisticTitle = styled.h2`
+//   text-align: center;
+//   transition: all 0.2s;
+//   &:hover {
+//     /* transition: all 0.5s; */
+//     transform: scale(1.05);
+//   }
+// `;
 
 export const StatisticList = styled.ul`
   margin: 0;

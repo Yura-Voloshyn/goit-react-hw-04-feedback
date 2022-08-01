@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Container } from './App.styled';
-import FeedbackWrapper from './Section/Section';
+import FeedbackSection from './Section/Section';
+import Feedback from '../components/FeedbackOptions/FeedbackOptions';
+import Statistic from '../components/Statistics/Statistics';
+import Notification from '../components/Statistics/Notification';
 
 class App extends Component {
   state = {
@@ -8,30 +11,43 @@ class App extends Component {
     neutral: 0,
     bad: 0,
   };
-  handleGoodBtn = () => {
-    this.setState(prevState => ({ good: prevState.good + 1 }));
-    // console.log(this.state.good);
+
+  handleBtn = option => {
+    this.setState(prevState => ({ [option]: prevState[option] + 1 }));
+    // console.log(option);
   };
-  handleNeutralBtn = () => {
-    this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
-    // console.log('click neutral');
-  };
-  handleBadBtn = () => {
-    this.setState(prevState => ({ bad: prevState.bad + 1 }));
-    // console.log('click bad');
-  };
+  countTotalFeedback = () =>
+    Object.values(this.state).reduce((acc, value) => acc + value);
+
+  countPositiveFeedbackPercentage = () =>
+    Math.round((this.state.good / this.countTotalFeedback()) * 100);
 
   render() {
+    const totalFeedback = this.countTotalFeedback();
+    const feedBackPercentage = this.countPositiveFeedbackPercentage();
+    const { good, neutral, bad } = this.state;
     return (
       <Container>
-        <FeedbackWrapper
-          onGoodBtn={this.handleGoodBtn}
-          onNeutralBtn={this.handleNeutralBtn}
-          onBadBtn={this.handleBadBtn}
-          goodValue={this.state.good}
-          neutralValue={this.state.neutral}
-          badValue={this.state.bad}
-        />
+        <FeedbackSection title="Please leave feedback">
+          <Feedback
+            options={Object.keys(this.state)}
+            onFeedbackBtn={this.handleBtn}
+          />
+        </FeedbackSection>
+
+        <FeedbackSection title="Statistic">
+          {!totalFeedback ? (
+            <Notification message="There is no feedback" />
+          ) : (
+            <Statistic
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={totalFeedback}
+              positivePercentage={feedBackPercentage ? feedBackPercentage : 0}
+            />
+          )}
+        </FeedbackSection>
       </Container>
     );
   }
