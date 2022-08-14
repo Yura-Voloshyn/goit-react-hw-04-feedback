@@ -175,3 +175,47 @@ export default App;
 
 // const financeReport2 = calculateTeamFinanceReport(salaries2, team2);
 // console.log(JSON.stringify(financeReport2));
+
+// const salaries = {
+//   Manager: { salary: 1000, tax: '10%' },
+//   Designer: { salary: 600, tax: '30%' },
+//   Artist: { salary: 1500, tax: '15%' },
+// };
+// const team = [
+//   { name: 'Misha', specialization: 'Manager' },
+//   { name: 'Max', specialization: 'Designer' },
+//   { name: 'Vova', specialization: 'Designer' },
+//   { name: 'Leo', specialization: 'Artist' },
+// ];
+
+// const financeReport = calculateTeamFinanceReport(salaries, team);
+
+// function calculateTeamFinanceReport(salaries, team) {
+//   const teamSpecialization = team.map(({ specialization }) => specialization);
+//   // console.log(teamSpecialization);
+//   const total = teamSpecialization.reduce(
+//     (total, specialization) => {
+//       if (!salaries.hasOwnProperty(specialization)) {
+//         return total;
+//       }
+
+//       const { salary, tax } = salaries[specialization]; // получаем зп и налог для специализации
+
+//       const taxAmount = (salary * tax.slice(0, -1)) / 100; // вычисляем налог на зп
+//       const totalSalary = salary + taxAmount; // вычисляем зп с налогом
+
+//       total.totalSalary += totalSalary;
+
+//       if (!total[specialization]) {
+//         total[specialization] = totalSalary;
+//       } else {
+//         total[specialization] += totalSalary;
+//       }
+
+//       return total;
+//     },
+//     { totalSalary: 0 }
+//   );
+//   return total;
+// }
+// console.log(JSON.stringify(financeReport));
